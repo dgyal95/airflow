@@ -15,9 +15,9 @@ with DAG(
         item_lst = ['A','B','C']
         selected_item = random.choice(item_lst)
         if selected_item == 'A':
-            return 'task_a'
+            return 'task_a' # 후행으로 실행시킬 task 1개일 경우
         elif selected_item in ['B','C']:
-            return ['task_b','task_c']
+            return ['task_b','task_c'] # 후행으로 실행시킬 task가 2개이상일 경우 list로
     
     python_branch_task = BranchPythonOperator(
         task_id='python_branch_task',
