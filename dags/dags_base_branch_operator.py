@@ -9,8 +9,8 @@ with DAG(
     schedule=None,
     catchup=False
 ) as dag:
-    class CustomBranchOperator(BaseBranchOperator):
-        def choose_branch(self, context):
+    class CustomBranchOperator(BaseBranchOperator):  # CustomBranchOperator 클래스명은 내맘대로 
+        def choose_branch(self, context):    # (but. 주의!) Airflow 가이드대로 choose_branch 로 정의해야함
             import random
             print(context)
             
