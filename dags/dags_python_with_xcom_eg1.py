@@ -19,14 +19,14 @@ with DAG(
     @task(task_id='python_xcom_push_task2')
     def xcom_push2(**kwargs):
         ti = kwargs['ti']
-        ti.xcom_push(key="result1", value="value_2")
-        ti.xcom_push(key="result2", value=[1,2,3,4])
+        ti.xcom_push(key="result1", value="value_2") # 키값은 같은데 다른 값을 push
+        ti.xcom_push(key="result2", value=[1,2,3,4]) # 키값은 같은데 다른 값을 push
 
     @task(task_id='python_xcom_pull_task')
     def xcom_pull(**kwargs):
         ti = kwargs['ti']
-        value1 = ti.xcom_pull(key="result1")
-        value2 = ti.xcom_pull(key="result2", task_ids='python_xcom_push_task1')
+        value1 = ti.xcom_pull(key="result1") # 아래 task 순서상 나중에 돌은 task2의 값을 가져옴
+        value2 = ti.xcom_pull(key="result2", task_ids='python_xcom_push_task1') # task1 로 지정해서 가져옴
         print(value1)
         print(value2)
 
