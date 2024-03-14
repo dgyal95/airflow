@@ -19,14 +19,14 @@ with DAG(
 
     @task(task_id='python_upstream_1')
     def python_upstream_1():
-        raise AirflowException('downstream_1 Exception!')
+        raise AirflowException('downstream_1 Exception!') # AirflowException : 실패처리됨
 
 
     @task(task_id='python_upstream_2')
     def python_upstream_2():
         print('정상 처리')
 
-    @task(task_id='python_downstream_1', trigger_rule='all_done')
+    @task(task_id='python_downstream_1', trigger_rule='all_done') # Trigger Rule : all_done
     def python_downstream_1():
         print('정상 처리')
 
